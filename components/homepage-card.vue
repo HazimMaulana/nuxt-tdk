@@ -1,10 +1,16 @@
 <template>
-  <div class="flex flex-col border border-black rounded-4xl w-[400px]">
-    <div class="py-4 px-8 space-y-3 h-[210px] flex flex-col justify-center bg-white rounded-t-4xl">
-          <p class="font-bold text-xl">Lorem, ipsum dolor.</p>
-          <p class="text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi repellat repudiandae quod possimus iure illo ullam ipsam alias voluptatibus? Ex.</p>
-          <a href="" class="border rounded-full w-fit px-4 py-1 text-sm">More Details</a>      
+  <div class="card bg-base-100 w-120 shadow-sm rounded-4xl">
+    <div class="card-body bg-white rounded-t-4xl">
+      <h2 class="card-title text-black">Card Title</h2>
+      <p class="text-black">A card component has a figure, a body part, and inside body there are title and actions parts</p>
+      <div class="card-actions justify-start">
+        <button class="btn rounded-full bg-white text-black">More Details</button>
+      </div>
     </div>
-    <img src="/public/img/card-placeholder.png" class="rounded-b-4xl" alt="">
-  </div>
+    <figure>
+      <img
+        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+        alt="Shoes" />
+    </figure>
+</div>
 </template>
