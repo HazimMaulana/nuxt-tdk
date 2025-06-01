@@ -1,6 +1,6 @@
 <template>
   <div class="bg-[url(/img/placeholder.png)] h-lvh bg-cover bg-center">
-    <navbar />
+    <navbar class=" lg:flex " />
 
     <div class="flex flex-col w-full h-lvh justify-center items-center">
       <div class="flex flex-col w-[40%] justify-center items-center">
