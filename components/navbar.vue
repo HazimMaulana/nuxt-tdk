@@ -1,19 +1,44 @@
 <template>
-  <div class="navbar-start flex flex-row w-screen px-3 pt-3 justify-between">
-    <div class="text-black">
+  <div class="w-full h-22 p-2 flex flex-row justify-between items-center ">
+    <!-- LOGO -->
+    <div class="text-black flex items-center">
       <p>LOGO</p>
     </div>
-    <div class="dropdown  btn btn-ghost bg-gray-400/50 backdrop-blur-lg rounded-2xl p-1 px-3" @click="toggleDropdown">
-      <div tabindex="0" role="button" class="text-black" >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-        </svg>
+
+    <!-- Menu untuk layar kecil (mobile) menggunakan burger -->
+    <div class="absolute right-0 top-0 p-2 lg:hidden">
+      <div
+        :class="[
+          'bg-gray-300/40 backdrop-blur-sm shadow-md text-white p-4 rounded-2xl cursor-pointer transition-all duration-500 ease-in-out overflow-hidden w-fit flex flex-col items-end',
+          isExpanded ? 'h-auto' : 'h-fit',
+        ]"
+        @click="togglePanel"
+        :style="{ maxHeight: isExpanded ? '1000px' : '80px' }"
+      >
+        <h3 class="text-lg font-semibold">
+          <svg class="" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+            <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+          </svg>
+        </h3>
+        <div v-if="isExpanded" class="mt-2 flex flex-col items-end space-y-1.5 px-1 ml-14 text-black text-lg">
+          <a href="">Home</a>
+          <a href="">Article</a>
+          <a href="">Our Portfolio</a>
+          <a href="">Our Services</a>
+          <a href="">About Us</a>
+          <a href="">Contact</a>
+        </div>
       </div>
-      <ul v-show="isDropdownOpen" tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Homepage</a></li>
-        <li><a>Portfolio</a></li>
-        <li><a>About</a></li>
-      </ul>
+    </div>
+
+    <!-- Menu untuk layar besar (md dan lg) menggunakan menu horizontal -->
+    <div class="hidden lg:flex flex-row space-x-6 shadow-md px-12 py-4 bg-gray-300/40 backdrop-blur-md text-black rounded-4xl">
+      <a href="">Home</a>
+      <a href="">Article</a>
+      <a href="">Our Portfolio</a>
+      <a href="">Our Services</a>
+      <a href="">About Us</a>
+      <a href="">Contact</a>
     </div>
   </div>
 </template>
@@ -22,12 +47,12 @@
 export default {
   data() {
     return {
-      isDropdownOpen: false, 
+      isExpanded: false,
     };
   },
   methods: {
-    toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen;
+    togglePanel() {
+      this.isExpanded = !this.isExpanded;
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="bg-[url(/img/placeholder.png)] h-lvh bg-cover bg-center">
-    <navbar class=" lg:flex " />
+    <navbar class="" />
 
     <div class="flex flex-col w-full h-lvh justify-center items-center">
       <div class="flex flex-col w-[40%] justify-center items-center">
@@ -42,12 +42,12 @@
   </div>
 
   <div class="flex flex-col h-[100vh] bg-[#DDDDDD] justify-center items-center">
-    <div class="flex flex-col mx-32 justify-center items-center h-full">
+    <div class="flex flex-col lg:mx-32 justify-center items-center h-full">
       <div class="flex w-full justify-start">
         <h1 class="text-black">Our Portofolio</h1>
       </div>
       <div class="flex flex-row w-full justify-between items-end">
-        <p class="font-bold text-[#EB5523] text-4xl">Lorem Ipsum</p>
+        <p class="font-bold text-[#EB5523] lg:text-4xl">Lorem Ipsum</p>
         <a href="" class="flex flex-row text-black">
           <p class="font-semibold">More</p>
           <svg width="44" height="25" viewBox="0 0 44 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,9 +66,18 @@
           </svg>
         </a>
       </div>
-      <div class="flex flex-row mt-5">
+      <div class="hidden lg:flex flex-row mt-5">
         <homepage-card class="" />
         <div class="grid grid-cols-2 gap-2 px-2">
+          <homepage-card-small class="" />
+          <homepage-card-small class="" />
+          <homepage-card-small class="" />
+          <homepage-card-small class="" />
+        </div>
+      </div>
+      <div class="lg:hidden flex flex-col mt-5">
+        <homepage-card class="" />
+        <div class="grid grid-cols-2 gap-2 px-4 mt-2">
           <homepage-card-small class="" />
           <homepage-card-small class="" />
           <homepage-card-small class="" />
