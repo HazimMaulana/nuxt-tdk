@@ -43,6 +43,8 @@
 
 <style>
 .stroke {
-  -webkit-text-stroke: 1px #000;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #FFFFFF;
+  -webkit-text-fill-color: transparent;
 }
 </style>

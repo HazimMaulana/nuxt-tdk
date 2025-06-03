@@ -1,8 +1,6 @@
 <template>
   <div class="bg-[url(/img/placeholder.png)] min-h-screen bg-cover bg-center flex flex-col">
-    <navbar />
-
-    <div class="flex flex-col flex-grow w-full justify-center items-center p-4">
+    <div class="flex flex-col flex-grow w-full justify-center items-center p-4 mt-[YOUR_NAVBAR_HEIGHT]">
       <div class="flex flex-col w-full max-w-xl sm:w-4/5 md:w-3/5 lg:w-2/5 justify-center items-center text-center">
         <h1 class="font-bold text-xl sm:text-2xl md:text-3xl text-black">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -186,22 +184,13 @@
     </div>
   </div>
 
-  <footer-component />
 </template>
 
 <style>
-/*
-  Animate the logos with an infinite scroll effect.
-  Pertimbangkan untuk memindahkan ini ke tailwind.config.js jika Anda sering menggunakan animasi ini.
-*/
 .animate-marquee {
   animation: marquee 25s linear infinite;
   /* Durasi bisa disesuaikan */
 }
-
-/*
-  CSS kustom `.icon` tidak lagi diperlukan karena kita menggunakan kelas `mx-*` dari Tailwind pada gambar.
-*/
 
 @keyframes marquee {
   0% {
@@ -210,7 +199,6 @@
 
   100% {
     transform: translateX(-100%);
-    /* Memastikan loop yang mulus dengan konten yang diduplikasi */
   }
 }
 </style>

@@ -12,7 +12,7 @@
       <a href="#">About Us</a>
       <a href="#">Contact</a>
     </div>
-    <div class="lg:hidden flex items-center justify-center z-40">
+    <div class="md:hidden flex items-center justify-center z-40">
       <label class="btn btn-ghost swap swap-rotate rounded-2xl bg-gray-400/50 backdrop-blur-md">
         <input type="checkbox" @change="handleMenuToggle" v-model="isMobileMenuOpen" />
 
