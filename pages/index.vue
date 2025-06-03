@@ -46,10 +46,10 @@
 
   <div class="flex flex-col min-h-screen bg-[#DDDDDD] justify-center items-center py-12 sm:py-16 px-4 sm:px-8 md:px-16">
     <div class="flex flex-col w-full max-w-6xl justify-center items-center">
-      <div class="flex flex-col sm:flex-row w-full justify-between items-start sm:items-end">
+      <div class="flex flex-col w-full items-start">
         <div>
           <h1 class="text-black text-xl sm:text-2xl font-semibold">Our Portofolio</h1>
-          <p class="font-bold text-[#EB5523] text-3xl sm:text-4xl md:text-5xl mt-1">Lorem Ipsum</p>
+          <p class="w-full font-bold text-[#EB5523] text-3xl sm:text-4xl md:text-5xl mt-1">Lorem Ipsum</p>
         </div>
         <div class="flex w-full items-end justify-end">
           <a href="" class="flex flex-row text-black items-center mt-4 sm:mt-0 hover:text-opacity-75">
