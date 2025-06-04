@@ -3,17 +3,18 @@
     <navbar />
 
     <div class="flex h-lvh w-full justify-center items-center">
-      <div class="flex flex-row w-3/5 h-[60%] shadow-lg border border-gray-400 rounded-4xl">
-        <div class="w-3/5 bg-[#1E1E1E] rounded-l-4xl flex flex-col p-12 justify-evenly">
+      <div class="flex flex-col lg:flex-row-reverse lg:w-3/5 w-[90%] h-[60%] shadow-lg border border-gray-400 rounded-4xl">
+        <img src="/img/login-placeholder.png" alt="" class="sm:rounded-t-4xl lg:rounded-r-4xl h-[40%] lg:h-full lg:w-2/5">
+        <div class="lg:w-3/5 h-[60%] lg:h-full bg-[#1E1E1E] sm:rounded-b-4xl lg:rounded-br-none lg:rounded-l-4xl flex flex-col lg:p-12 p-4 justify-evenly">
           <div class="flex flex-col space-y-2">
-            <h1 class="text-2xl">Login to Your Account</h1>
+            <h1 class="text-xl lg:text-2xl">Login to Your Account</h1>
             <p>Admin Access Only</p>
           </div>
-          <div class="flex flex-col space-y-2">
-            <label for="email">Email</label>
-            <input type="email" name="" id="" class="p-2 w-full outline-white outline-1 rounded-2xl" />
-            <label for="email">Email</label>
-            <input type="email" name="" id="" class="p-2 w-full outline-white outline-1 rounded-2xl" />
+          <div class="flex flex-col space-y-4 lg:space-y-2 sm:pt-2">
+            <label for="email" class="hidden lg:flex">Email</label>
+            <input type="email" name="" id="" class="p-2 w-full outline-white outline-1 rounded-2xl" placeholder="Email"/>
+            <label for="password" class="hidden lg:flex">Password</label>
+            <input type="password" name="" id="" class="p-2 w-full outline-white outline-1 rounded-2xl" placeholder="Password"/>
           </div>
           <a href="" class="flex border border-white w-fit px-6 py-2 rounded-full justify-center items-center space-x-4 mt-2 hover:bg-gray-300/50 hover:delay-150">
             <p>Login</p>
@@ -25,7 +26,6 @@
             </svg>
           </a>
         </div>
-        <img src="/img/login-placeholder.png" alt="" class="rounded-r-4xl w-2/5">
       </div>
     </div>
   </div>

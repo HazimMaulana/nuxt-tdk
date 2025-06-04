@@ -1,44 +1,54 @@
 <template>
-  <div class="w-full h-22 p-2 flex flex-row justify-between items-center ">
-    <!-- LOGO -->
-    <div class="text-black flex items-center">
-      <p>LOGO</p>
+  <div class="flex justify-between px-6 items-center pt-2 w-full fixed z-30">
+    <div class="text-black">
+      <NuxtLink to="/">LOGO</NuxtLink>
     </div>
+    <div
+      class="hidden md:flex flex-row shadow-md rounded-full px-12 py-4 space-x-6 text-[1rem] bg-gray-300/40 backdrop-blur-md text-black">
+      <NuxtLink to="/">Home</NuxtLink>
+      <NuxtLink to="/article">Article</NuxtLink>
+      <NuxtLink to="/portofolio">Our Portofolio</NuxtLink>
+      <NuxtLink to="/our-services">Our Service</NuxtLink>
+      <NuxtLink to="/about-us">About Us</NuxtLink>
+      <NuxtLink to="/contact">Contact</NuxtLink>
+    </div>
+    <div class="md:hidden flex items-center justify-center z-40">
+      <label class="btn btn-ghost swap swap-rotate rounded-2xl bg-gray-400/50 backdrop-blur-md">
+        <input type="checkbox" @change="handleMenuToggle" v-model="isMobileMenuOpen" />
 
-    <!-- Menu untuk layar kecil (mobile) menggunakan burger -->
-    <div class="absolute right-0 top-0 p-2 lg:hidden">
-      <div
-        :class="[
-          'bg-gray-300/40 backdrop-blur-sm shadow-md text-white p-4 rounded-2xl cursor-pointer transition-all duration-500 ease-in-out overflow-hidden w-fit flex flex-col items-end',
-          isExpanded ? 'h-auto' : 'h-fit',
-        ]"
-        @click="togglePanel"
-        :style="{ maxHeight: isExpanded ? '1000px' : '80px' }"
-      >
-        <h3 class="text-lg font-semibold">
-          <svg class="" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
-            <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
-          </svg>
-        </h3>
-        <div v-if="isExpanded" class="mt-2 flex flex-col items-end space-y-1.5 px-1 ml-14 text-black text-lg">
-          <a href="">Home</a>
-          <a href="">Article</a>
-          <a href="">Our Portfolio</a>
-          <a href="">Our Services</a>
-          <a href="">About Us</a>
-          <a href="">Contact</a>
-        </div>
+        <svg class="swap-off fill-black" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+          viewBox="0 0 512 512">
+          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+        </svg>
+
+        <svg class="swap-on fill-black" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <polygon
+            points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+        </svg>
+      </label>
+    </div>
+    <div class="w-screen h-screen fixed top-0 left-0 bg-gray-900/50 backdrop-blur-md z-20 items-center justify-center"
+      :class="{ 'flex': isMobileMenuOpen, 'hidden': !isMobileMenuOpen }" id="mobile-menu">
+      <div class="flex flex-col items-start justify-center h-full space-y-6 text-white">
+        <NuxtLink to="/" class="text-lg" @click="closeMobileMenu">
+          <p class="font-extrabold text-5xl">Home</p>
+        </NuxtLink>
+        <NuxtLink to="/article" class="text-lg" @click="closeMobileMenu">
+          <p class="font-extrabold text-5xl">Article</p>
+        </NuxtLink>
+        <NuxtLink to="/portofolio" class="text-lg" @click="closeMobileMenu">
+          <p class="font-extrabold text-5xl">Our Portfolio</p>
+        </NuxtLink>
+        <NuxtLink to="/our-services" class="text-lg" @click="closeMobileMenu">
+          <p class="font-extrabold text-5xl">Our Service</p>
+        </NuxtLink>
+        <NuxtLink to="/about-us" class="text-lg" @click="closeMobileMenu">
+          <p class="font-extrabold text-5xl">About Us</p>
+        </NuxtLink>
+        <NuxtLink to="/contact" class="text-lg" @click="closeMobileMenu">
+          <p class="font-extrabold text-5xl">Contact</p>
+        </NuxtLink>
       </div>
-    </div>
-
-    <!-- Menu untuk layar besar (md dan lg) menggunakan menu horizontal -->
-    <div class="hidden lg:flex flex-row space-x-6 shadow-md px-12 py-4 bg-gray-300/40 backdrop-blur-md text-black rounded-4xl">
-      <a href="">Home</a>
-      <a href="">Article</a>
-      <a href="">Our Portfolio</a>
-      <a href="">Our Services</a>
-      <a href="">About Us</a>
-      <a href="">Contact</a>
     </div>
   </div>
 </template>
@@ -47,13 +57,16 @@
 export default {
   data() {
     return {
-      isExpanded: false,
+      isMobileMenuOpen: false // State untuk melacak status menu mobile
     };
   },
   methods: {
-    togglePanel() {
-      this.isExpanded = !this.isExpanded;
+    handleMenuToggle() {
+      console.log('Menu toggled, new state:', this.isMobileMenuOpen);
     },
-  },
+    closeMobileMenu() {
+      this.isMobileMenuOpen = false;
+    }
+  }
 };
 </script>

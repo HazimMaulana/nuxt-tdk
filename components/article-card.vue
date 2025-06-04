@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full max-w-xs sm:max-w-sm bg-[#F5EE9E] shadow-lg rounded-2xl flex flex-col p-6">
-    <h1 class="text-black text-2xl sm:text-3xl font-semibold leading-tight break-words">
+  <div class="w-full md:aspect-[3/4] bg-[#F5EE9E] shadow-lg rounded-2xl flex flex-col p-6">
+    <h1 class="text-black text-lg md:text-2xl font-semibold leading-tight break-words">
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
     </h1>
     <p class="text-black text-sm sm:text-base pt-4 sm:pt-6">By John Doe</p>
