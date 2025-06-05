@@ -25,10 +25,12 @@
           <polygon
             points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
         </svg>
+
       </label>
     </div>
-    <div class="w-screen h-screen fixed top-0 left-0 bg-gray-900/50 backdrop-blur-md z-20 items-center justify-center"
-      :class="{ 'flex': isMobileMenuOpen, 'hidden': !isMobileMenuOpen }" id="mobile-menu">
+    <div
+      class="menu w-screen h-screen fixed top-0 left-0 bg-gray-900/50 backdrop-blur-md z-20 items-center justify-center"
+      :class="{ 'flex translate-y-0 opacity-0': isMobileMenuOpen, 'hidden': !isMobileMenuOpen }" id="mobile-menu">
       <div class="flex flex-col items-start justify-center h-full space-y-6 text-white">
         <NuxtLink to="/" class="text-lg" @click="closeMobileMenu">
           <p class="font-extrabold text-5xl">Home</p>
@@ -54,19 +56,55 @@
 </template>
 
 <script>
+import { animate, eases } from 'animejs';
+const { linear, outExpo, cubicBezier } = eases;
+
 export default {
   data() {
     return {
-      isMobileMenuOpen: false // State untuk melacak status menu mobile
+      isMobileMenuOpen: false, // State untuk melacak status menu mobile
     };
   },
   methods: {
     handleMenuToggle() {
       console.log('Menu toggled, new state:', this.isMobileMenuOpen);
+      this.animateMobileMenu();
     },
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
-    }
-  }
+      this.animateMobileMenu();
+    },
+    animateMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+
+      // Optimisasi animasi ketika menu dibuka atau ditutup
+      /**
+       * Determines the keyframes for the mobile menu animation based on its open state.
+       * 
+       * If `isMobileMenuOpen` is true:
+       * - The animation starts with the menu off-screen (translateY: '-100%', opacity: 0).
+       * - The animation ends with the menu fully visible (translateY: '0%', opacity: 1).
+       * 
+       * If `isMobileMenuOpen` is false:
+       * - The animation starts with the menu fully visible (translateY: '0%', opacity: 1).
+       * - The animation ends with the menu off-screen (translateY: '-100%', opacity: 0).
+       */
+      const keyframes = this.isMobileMenuOpen
+        ? [
+          { translateY: '-100%', opacity: 0 },
+          { translateY: '0%', opacity: 1, duration: 500, easing: eases.outExpo },
+        ]
+        : [
+          { translateY: '0%', opacity: 1, duration: 500, easing: eases.outExpo },
+          { translateY: '-100%', opacity: 0 },
+        ];
+
+      animate(menu, {
+        keyframes,
+        duration: 500, // Durasi animasi dalam milidetik
+        ease: eases.outExpo, // Gunakan easing outExpo untuk animasi yang halus
+      });
+    },
+  },
 };
 </script>
