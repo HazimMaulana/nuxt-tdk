@@ -70,12 +70,17 @@
         </div>
       </div>
       <div class="flex flex-col lg:flex-row w-full mt-5 gap-4">
-        <homepage-card class="w-full lg:w-1/2" />
+        <homepage-card class="w-full lg:w-1/2" title="Card Title"
+          shortDescription="A card component has a figure, a body part, and inside body there are title and actions parts." />
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 w-full lg:w-1/2">
-          <homepage-card-small class="" />
-          <homepage-card-small class="" />
-          <homepage-card-small class="" />
-          <homepage-card-small class="" />
+          <homepage-card-small class="" title="Card Title"
+            shortDescription="A card component has a figure, a body part, and inside body there are title and actions parts." />
+          <homepage-card-small class="" title="Card Title"
+            shortDescription="A card component has a figure, a body part, and inside body there are title and actions parts." />
+          <homepage-card-small class="" title="Card Title"
+            shortDescription="A card component has a figure, a body part, and inside body there are title and actions parts." />
+          <homepage-card-small class="" title="Card Title"
+            shortDescription="A card component has a figure, a body part, and inside body there are title and actions parts." />
         </div>
       </div>
     </div>
@@ -92,28 +97,28 @@
       <div
         class="carousel carousel-center bg-transparent rounded-2xl lg:rounded-3xl w-full max-w-7xl space-x-4 sm:space-x-8 p-4">
         <div class="carousel-item">
-          <carousel-card />
+          <carousel-card title="Lorem ipsum dolor sit amet consectetur adipisicing elit." author="Jhon Doe" />
         </div>
         <div class="carousel-item">
-          <carousel-card />
+          <carousel-card title="Lorem ipsum dolor sit amet consectetur adipisicing elit." author="Jhon Doe" />
         </div>
         <div class="carousel-item">
-          <carousel-card />
+          <carousel-card title="Lorem ipsum dolor sit amet consectetur adipisicing elit." author="Jhon Doe" />
         </div>
         <div class="carousel-item">
-          <carousel-card />
+          <carousel-card title="Lorem ipsum dolor sit amet consectetur adipisicing elit." author="Jhon Doe" />
         </div>
         <div class="carousel-item">
-          <carousel-card />
+          <carousel-card title="Lorem ipsum dolor sit amet consectetur adipisicing elit." author="Jhon Doe" />
         </div>
         <div class="carousel-item">
-          <carousel-card />
+          <carousel-card title="Lorem ipsum dolor sit amet consectetur adipisicing elit." author="Jhon Doe" />
         </div>
         <div class="carousel-item">
-          <carousel-card />
+          <carousel-card title="Lorem ipsum dolor sit amet consectetur adipisicing elit." author="Jhon Doe" />
         </div>
         <div class="carousel-item">
-          <carousel-card />
+          <carousel-card title="Lorem ipsum dolor sit amet consectetur adipisicing elit." author="Jhon Doe" />
         </div>
       </div>
     </div>
