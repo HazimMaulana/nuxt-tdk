@@ -2,12 +2,12 @@
   <div class="flex flex-col max-w-screen">
     <div class="flex flex-col md:flex-row w-full h-screen">
       <img src="/img/placeholder.png" alt="" class="h-1/2 w-full md:h-full md:w-1/2" />
-      <div class="flex flex-col h-1/2 w-full md:h-full md:w-1/2 items-center justify-center px-4">
+      <div class="flex flex-col bg-white text-black h-1/2 w-full md:h-full md:w-1/2 items-center justify-center px-4">
         <h1 class="text-2xl font-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis, velit?</p>
       </div>
     </div>
-    <div class="flex flex-col md:flex-row w-full h-screen justify-center items-center bg-slate-300">
+    <div class="flex flex-col md:flex-row w-full h-screen justify-center items-center bg-white">
       <div class="flex flex-col w-full md:w-1/2 py-4 space-y-1 px-4 md:space-y-4">
         <h1 class="text-3xl font-bold text-[#EB5523]">Contact Us</h1>
         <p class="text-black text-base sm:text-lg md:text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis eos necessitatibus, totam earum quasi a.</p>

@@ -1,7 +1,5 @@
 <template>
   <div class="bg-[#DDDDDD] h-lvh">
-    <navbar />
-
     <div class="flex h-lvh w-full justify-center items-center">
       <div class="flex flex-col lg:flex-row-reverse lg:w-3/5 w-[90%] h-[60%] shadow-lg border border-gray-400 rounded-4xl">
         <img src="/img/login-placeholder.png" alt="" class="sm:rounded-t-4xl lg:rounded-r-4xl h-[40%] lg:h-full lg:w-2/5">
