@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <Navbar />
+  <div>
+    <Navbar />
 
-        <main>
-            <NuxtPage />
-        </main>
+    <main>
+      <NuxtPage />
+    </main>
 
-        <FooterComponent />
-    </div>
+    <FooterComponent />
+  </div>
 </template>
