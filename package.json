@@ -10,15 +10,24 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@primeuix/themes": "^1.1.1",
+    "@primevue/forms": "^4.3.5",
+    "@primevue/themes": "^4.3.5",
     "@tailwindcss/vite": "^4.1.7",
     "chart.js": "^4.4.9",
     "nuxt": "^3.17.4",
+    "nuxt-primevue": "^3.0.0",
+    "primeflex": "^4.0.0",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.3.5",
+    "quill": "^2.0.3",
     "tailwindcss": "^4.1.7",
     "vue": "^3.5.14",
     "vue-chartjs": "^5.3.2",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
+    "@primevue/nuxt-module": "^4.3.5",
     "daisyui": "^5.0.38"
   }
 }
