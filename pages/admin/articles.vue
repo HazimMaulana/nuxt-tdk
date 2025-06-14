@@ -17,7 +17,7 @@
               fill="#F1F1F1"
             />
           </svg>
-          <p>Create Portofolio</p>
+          <p>Create Articles</p>
         </button>
         <div class="flex flex-row items-center space-x-3">
           <FloatLabel variant="on">
@@ -52,9 +52,9 @@
       </div>
 
       <div class="flex flex-col w-full mt-6 space-y-4">
-        <h1 class="text-2xl font-bold text-[#EB5523]">Highlight Portofolio</h1>
-        <div class="flex flex-row w-full border border-black rounded-4xl p-4 space-x-2 items-center">
-          <PortoCardAdmin /><PortoCardAdmin /><PortoCardAdmin /><PortoCardAdmin />
+        <h1 class="text-2xl font-bold text-[#EB5523]">Highlight Articles</h1>
+        <div class="flex flex-row w-full border border-black rounded-4xl p-4 space-x-8 items-center">
+          <carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin />
           <button class="p-4 bg-[#F43232] h-fit rounded-xl ml-6">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="white" xmlns="http://www.w3.org/2000/svg">
               <path d="M13.202 15.2891H6.48682V13.0507H13.202V6.33545H15.4404V13.0507H22.1557V15.2891H15.4404V22.0043H13.202V15.2891Z" fill="#FEF7FF" />
@@ -63,8 +63,8 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-4 gap-12 w-full pt-6">
-        <PortoCardAdmin /><PortoCardAdmin /><PortoCardAdmin /><PortoCardAdmin /><PortoCardAdmin /><PortoCardAdmin /><PortoCardAdmin /><PortoCardAdmin /><PortoCardAdmin /><PortoCardAdmin />
+      <div class="grid grid-cols-4 gap-16 w-full pt-6">
+        <carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin />
       </div>
     </div>
 
@@ -89,10 +89,6 @@
 
               <input id="cover-image-upload" type="file" class="hidden" />
             </label>
-          </div>
-          <div>
-            <label for="description" class="block text-2xl font-bold text-[#EB5523]">Short Description</label>
-            <textarea id="description" rows="4" class="mt-1 block w-full shadow-sm p-2 text-black border border-gray-700 rounded-2xl"></textarea>
           </div>
           <div>
             <label for="content" class="block text-2xl font-bold text-[#EB5523]">Content</label>
@@ -146,7 +142,7 @@
 
 <script>
 import { AutoComplete } from "primevue";
-import PortoCardAdmin from "../../components/portoCard-admin.vue";
+import CarouselAdmin from "../../components/carousel-admin.vue";
 
 definePageMeta({
   layout: "admin",
@@ -154,7 +150,7 @@ definePageMeta({
 
 export default {
   components: {
-    PortoCardAdmin,
+    CarouselAdmin,
   },
 
   // Mengelola state reaktif komponen (pengganti ref)
@@ -176,9 +172,9 @@ export default {
   computed: {
     judulHalaman() {
       if (this.tampilanAktif === "buat") {
-        return "Create Portofolio";
+        return "Create Articles";
       }
-      return "Portofolio";
+      return "Articles";
     },
   },
 };
