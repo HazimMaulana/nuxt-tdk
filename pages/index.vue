@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[url(/img/placeholder.png)] min-h-screen bg-cover bg-center flex flex-col">
+  <div class="bg-[url(/img/placeholder.png)] min-h-dvh bg-cover bg-center flex flex-col">
     <div class="flex flex-col flex-grow w-full justify-center items-center p-4 mt-[YOUR_NAVBAR_HEIGHT]">
       <div class="flex flex-col w-full max-w-xl sm:w-4/5 md:w-3/5 lg:w-2/5 justify-center items-center text-center">
         <h1 class="font-bold text-xl sm:text-2xl md:text-3xl text-black">
@@ -143,7 +143,7 @@
   <div class="flex flex-col md:flex-row min-h-screen bg-[#DDDDDD] justify-center items-stretch">
     <div class="flex flex-col w-full md:w-3/5 lg:w-1/2 justify-center p-6 sm:p-8 md:p-12 lg:p-16">
       <h1 class="text-3xl sm:text-4xl font-bold text-black">Contact Us</h1>
-      <p class="text-black text-base sm:text-lg md:text-xl pt-4 sm:pt-6">Lorem ipsum dolor sit amet consectetur
+      <p class="text-black text-base sm:text-lg md:text-xl pt-4 sm:pt-4">Lorem ipsum dolor sit amet consectetur
         adipisicing elit. Esse perferendis eos
         necessitatibus, totam earum quasi a.</p>
       <form class="mt-6 sm:mt-8 space-y-4 sm:space-y-6">
