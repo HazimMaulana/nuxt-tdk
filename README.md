@@ -37,7 +37,7 @@ Berikut adalah detail konfigurasi di setiap file penting.
 
 File ini adalah pusat kendali proyek Nuxt. Di sini kita mendaftarkan modul PrimeVue dan plugin Vite untuk Tailwind CSS.
 
-```typescript
+```javascript
 // nuxt.config.ts
 import tailwindcss from "@tailwindcss/vite";
 import Aura from "@primevue/themes/aura";

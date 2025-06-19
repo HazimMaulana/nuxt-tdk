@@ -19,7 +19,7 @@
         <p>Our Article</p>
         <h1 class="text-3xl font bold text-[#EB5523]">Lorem Ipsum</h1>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-14 md:mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-2 md:gap-14 md:mt-8">
       <article-card />
       <article-card />
       <article-card />
