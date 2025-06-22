@@ -1,8 +1,10 @@
 <template>
-  <div class="flex flex-col rounded-4xl p-8 bg-white justify-center items-center space-y-4">
-    <img src="/img/login-placeholder.png" alt="" class="border border-black aspect-[5/3] object-cover" />
-    <p class="font-extrabold text-black text-xl lg:text-2xl">Lorem ipsum dolor sit.</p>
-    <div class="flex flex-col w-full space-y-2">
+  <div class="flex flex-col md:flex-row xl:flex-col rounded-4xl p-8 bg-white justify-center items-center space-y-4 md:space-x-5">
+    <div class="flex flex-col h-full w-full items-center justify-center">
+      <img src="/img/login-placeholder.png" alt="" class="border border-black aspect-[5/3] object-cover" />
+      <p class="font-extrabold text-black text-xl lg:text-2xl">Lorem ipsum dolor sit.</p>
+    </div>
+    <div class="flex flex-col w-full space-y-2 md:justify-center md:h-full">
       <hr class="flex border-t-1 border w-full border-gray-400" />
       <p class="text-black">Lorem ipsum dolor sit amet.</p>
       <hr class="flex border-t-1 border w-full border-gray-400" />

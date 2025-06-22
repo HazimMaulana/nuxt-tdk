@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full md:aspect-[3/4] bg-[#F5EE9E] shadow-lg rounded-2xl flex flex-col p-6">
+  <div class="w-full md:aspect-[4/4] xl:aspect-[3/4] bg-[#F5EE9E] shadow-lg rounded-2xl flex flex-col p-6">
     <h1 class="text-black text-lg md:text-2xl font-semibold leading-tight break-words">
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
     </h1>

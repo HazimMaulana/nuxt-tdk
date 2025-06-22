@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-between px-6 items-center pt-2 w-full fixed z-30">
     <div class="text-black">
-      <NuxtLink to="/">LOGO</NuxtLink>
+      <NuxtLink to="/"><img class="h-6 md:h-8 xl:h-10" src="/public/img/logotdk.png" alt=""></NuxtLink>
     </div>
     <div
       class="hidden md:flex flex-row shadow-md rounded-full px-12 py-4 space-x-6 text-[1rem] bg-gray-300/40 backdrop-blur-md text-black">
