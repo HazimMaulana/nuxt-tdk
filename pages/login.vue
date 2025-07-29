@@ -58,7 +58,6 @@
 <script>
 // Impor yang diperlukan, termasuk useCookie untuk menyimpan token
 import { navigateTo, useCookie } from "nuxt/app";
-import api from "../server/api";
 
 export default {
   data() {
@@ -73,7 +72,7 @@ export default {
       const password = this.password;
 
       try {
-        const response = await api.post(
+        const response = await this.$api.post(
           "user/login",
           { name, password },
           {
