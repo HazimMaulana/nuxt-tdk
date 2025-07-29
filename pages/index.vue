@@ -1,7 +1,7 @@
 <template>
   <div class="relative min-h-dvh flex flex-col">
+    <!-- Bagian Hero Section -->
     <div class="absolute inset-0 bg-[url('/img/sample/sample-1.jpeg')] bg-cover bg-center brightness-50 -z-10"></div>
-
     <div class="flex flex-col flex-grow w-full justify-center items-center p-4 mt-[YOUR_NAVBAR_HEIGHT]">
       <div class="flex flex-col w-full max-w-xl sm:w-4/5 md:w-3/5 lg:w-2/5 justify-center items-center text-center">
         <h1 class="font-bold text-xl sm:text-2xl md:text-3xl text-white">
@@ -25,6 +25,7 @@
     </div>
   </div>
 
+  <!-- Bagian Visi -->
   <div class="flex min-h-screen bg-white justify-center items-center p-4 sm:p-8">
     <div
       class="flex flex-col bg-[url(/img/grafisbg.png)] bg-cover bg-no-repeat w-full max-w-3xl lg:max-w-4xl aspect-video sm:aspect-auto sm:min-h-[400px] md:min-h-[500px] rounded-2xl lg:rounded-3xl text-white p-8 sm:p-10 md:p-12 space-y-3 sm:space-y-4 justify-center">
@@ -46,6 +47,7 @@
     </div>
   </div>
 
+  <!-- Bagian Portofolio -->
   <div class="flex flex-col min-h-screen bg-[#DDDDDD] justify-center items-center py-12 sm:py-16 px-4 sm:px-8 md:px-16">
     <div class="flex flex-col w-full max-w-6xl justify-center items-center">
       <div class="flex flex-col w-full items-start">
@@ -71,18 +73,22 @@
           </a>
         </div>
       </div>
-      <div class="flex flex-col lg:flex-row w-full mt-5 gap-4">
-        <homepage-card class="w-full lg:w-1/2" />
+      <!-- Tampilkan data portofolio di sini. Gunakan v-if untuk memastikan data ada -->
+      <div v-if="portfolios && portfolios.length > 0" class="flex flex-col lg:flex-row w-full mt-5 gap-4">
+        <!-- Contoh: Tampilkan item pertama di kartu besar -->
+        <homepage-card v-if="portfolios[0]" :portfolio="portfolios[0]" class="w-full lg:w-1/2" />
+        <!-- Tampilkan sisa portofolio di kartu kecil -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 w-full lg:w-1/2">
-          <homepage-card-small class="" />
-          <homepage-card-small class="" />
-          <homepage-card-small class="" />
-          <homepage-card-small class="" />
+          <homepage-card-small v-for="item in portfolios.slice(1, 5)" :key="item._id" :portfolio="item" />
         </div>
+      </div>
+      <div v-else class="w-full mt-5">
+        <p class="text-center text-gray-500">Portofolio belum tersedia.</p>
       </div>
     </div>
   </div>
 
+  <!-- Bagian News & Report -->
   <div class="flex flex-col min-h-screen bg-white justify-center items-center py-12 sm:py-16 px-4">
     <div class="flex flex-col w-full max-w-7xl justify-center items-center">
       <div
@@ -91,36 +97,27 @@
         <p class="font-bold text-[#EB5523] text-3xl sm:text-4xl md:text-5xl">Popular News</p>
       </div>
 
-      <div
+      <!-- Tampilkan pesan error jika ada -->
+      <div v-if="error" class="text-red-500">
+        Gagal memuat berita: {{ error.message }}
+      </div>
+      <!-- Tampilkan carousel jika data blog ada dan tidak error -->
+      <div v-else-if="blogs && blogs.length > 0"
         class="carousel carousel-center bg-transparent rounded-2xl lg:rounded-3xl w-full max-w-7xl space-x-4 sm:space-x-8 p-4">
-        <div class="carousel-item">
-          <carousel-card />
+        <!-- Gunakan v-for untuk mengulang data blog -->
+        <div v-for="blog in blogs" :key="blog._id" class="carousel-item">
+          <!-- Kirim data blog sebagai 'props' ke komponen carousel-card Anda -->
+          <carousel-card :blog="blog" />
         </div>
-        <div class="carousel-item">
-          <carousel-card />
-        </div>
-        <div class="carousel-item">
-          <carousel-card />
-        </div>
-        <div class="carousel-item">
-          <carousel-card />
-        </div>
-        <div class="carousel-item">
-          <carousel-card />
-        </div>
-        <div class="carousel-item">
-          <carousel-card />
-        </div>
-        <div class="carousel-item">
-          <carousel-card />
-        </div>
-        <div class="carousel-item">
-          <carousel-card />
-        </div>
+      </div>
+      <!-- Tampilkan pesan jika tidak ada blog -->
+      <div v-else class="w-full mt-5">
+        <p class="text-center text-gray-500">Tidak ada berita saat ini.</p>
       </div>
     </div>
   </div>
 
+  <!-- Bagian Logo Marquee -->
   <div class="logos group bg-white relative overflow-hidden whitespace-nowrap py-12">
     <div class="animate-marquee group-hover:[animation-play-state:paused] inline-block w-max">
       <img class="mx-8 sm:mx-12 md:mx-16 inline h-12 sm:h-16" src="/img/tesla.png" alt="Tesla" />
@@ -142,6 +139,7 @@
     </div>
   </div>
 
+  <!-- Bagian Contact Us -->
   <div class="flex flex-col md:flex-row min-h-screen bg-[#DDDDDD] justify-center items-stretch">
     <div class="flex flex-col w-full md:w-3/5 lg:w-1/2 justify-center p-6 sm:p-8 md:p-12 lg:p-16">
       <h1 class="text-3xl sm:text-4xl font-bold text-black">Contact Us</h1>
@@ -172,11 +170,11 @@
         </div>
         <a href="#"
           class="inline-flex flex-row items-center justify-center border-black border w-fit rounded-full px-5 py-2 sm:px-6 sm:py-2.5 space-x-2 mt-6 sm:mt-8 text-sm sm:text-base hover:bg-gray-800 hover:text-white hover:border-gray-800 transition-colors">
-          <svg width="14" height="14" viewBox="0 0 19 19" fill="black" xmlns="http://www.w3.org/2000/svg">
+          <svg width="14" height="14" viewBox="0 0 19 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M14.1969 10.625H1.625C1.30625 10.625 1.03925 10.517 0.824004 10.301C0.608754 10.085 0.500754 9.818 0.500004 9.5C0.499254 9.182 0.607254 8.915 0.824004 8.699C1.04075 8.483 1.30775 8.375 1.625 8.375H14.1969L8.68437 2.8625C8.45937 2.6375 8.35138 2.375 8.36038 2.075C8.36938 1.775 8.48675 1.5125 8.7125 1.2875C8.9375 1.08125 9.2 0.973246 9.5 0.963496C9.8 0.953746 10.0625 1.06175 10.2875 1.2875L17.7125 8.7125C17.825 8.825 17.9049 8.94687 17.9521 9.07812C17.9994 9.20937 18.0226 9.35 18.0219 9.5C18.0211 9.65 17.9979 9.79062 17.9521 9.92187C17.9064 10.0531 17.8265 10.175 17.7125 10.2875L10.2875 17.7125C10.0813 17.9187 9.82362 18.0219 9.51462 18.0219C9.20563 18.0219 8.93825 17.9187 8.7125 17.7125C8.4875 17.4875 8.375 17.2205 8.375 16.9115C8.375 16.6025 8.4875 16.3351 8.7125 16.1094L14.1969 10.625Z" />
           </svg>
-          <p class="font-semibold text-black">Send</p>
+          <p class="font-semibold">Send</p>
         </a>
       </form>
     </div>
@@ -189,18 +187,69 @@
 </template>
 
 <style>
-  .animate-marquee {
-    animation: marquee 25s linear infinite;
-    /* Durasi bisa disesuaikan */
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+  /* Durasi bisa disesuaikan */
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
   }
 
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-
-    100% {
-      transform: translateX(-100%);
-    }
+  100% {
+    transform: translateX(-100%);
   }
+}
 </style>
+
+<script>
+import CarouselCard from '../components/carousel-card.vue';
+
+export default {
+  components: {
+    CarouselCard
+  },
+
+  data() {
+    return {
+      portfolios: [],
+      blogs: [],
+      error: null
+    };
+  },
+
+  async mounted() {
+    console.log(`[DEBUG] mounted untuk halaman sedang berjalan...`);
+    try {
+      console.log('[DEBUG] Mencoba memanggil axios dengan endpoint /content-tracking/');
+      const response = await this.$api.get('/content-tracking/');
+      console.log('[DEBUG] Panggilan API berhasil, respons diterima.');
+
+      this.portfolios = response.data.data.highlightedPortfolios;
+      this.blogs = response.data.data.featuredBlogs;
+
+    } catch (err) {
+      console.error('[DEBUG] Terjadi error di dalam mounted:', err);
+      this.error = {
+        statusCode: err.response?.status || 500,
+        message: err.message || 'Terjadi kesalahan pada server.'
+      };
+    }
+  },
+
+  methods: {
+    async refreshData() {
+      try {
+        const response = await this.$api.get('/content-tracking/');
+        this.portfolios = response.data.data.highlightedPortfolios;
+        this.blogs = response.data.data
+          .featuredBlogs;
+
+      } catch (err) {
+        console.error("Gagal refresh data:", err);
+      }
+    }
+  }
+};
+</script>

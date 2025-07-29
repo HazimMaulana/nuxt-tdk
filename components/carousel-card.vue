@@ -1,12 +1,29 @@
 <template>
-  <div class="w-full max-w-xs sm:max-w-sm bg-[#F5EE9E] shadow-lg rounded-2xl flex flex-col p-6">
+  <!-- Pastikan ada root element, misalnya <div> -->
+  <div class="w-full max-w-xs sm:max-w-sm bg-[#F5EE9E] shadow-lg rounded-2xl flex flex-col p-6 h-full">
+    <!-- Judul Blog -->
+    <!-- 'break-words' penting agar judul panjang tidak merusak layout -->
     <h1 class="text-black text-2xl sm:text-3xl font-semibold leading-tight break-words">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      <!-- Gunakan data dari prop 'blog' -->
+      {{ blog.title || 'Judul Tidak Tersedia' }}
     </h1>
-    <p class="text-black text-sm sm:text-base pt-4 sm:pt-6">By John Doe</p>
+
+    <!-- Informasi Tambahan (Contoh: Tanggal) -->
+    <!-- Anda bisa menambahkan nama penulis jika ada di data API -->
+    <p class="text-black text-sm sm:text-base pt-4 sm:pt-6">
+      
+      <!-- Menampilkan tanggal yang sudah diformat -->
+      {{ formattedDate }}
+    </p>
+
+    <!-- Spacer untuk mendorong link ke bawah -->
     <div class="flex-grow"></div>
+
+    <!-- Link untuk membaca lebih lanjut -->
     <div class="flex items-center mt-6 sm:mt-8">
-      <a href="#" class="text-black font-semibold hover:text-[#EB5523] transition-colors duration-200">
+      <!-- Arahkan link ke halaman detail blog menggunakan slug -->
+      <a :href="`/article/${blog.slug}`"
+        class="text-black font-semibold hover:text-[#EB5523] transition-colors duration-200">
         Read More
       </a>
       <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-2">
@@ -17,3 +34,30 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'CarouselCard',
+  props: {
+    // Definisikan prop 'blog'
+    blog: {
+      type: Object, // Tipe datanya adalah objek
+      required: true // Prop ini wajib diisi
+    }
+  },
+  computed: {
+    // Computed property untuk memformat tanggal
+    formattedDate() {
+      if (!this.blog || !this.blog.createdAt) {
+        return 'Tanggal tidak tersedia';
+      }
+      // Buat objek tanggal dari string ISO
+      const date = new Date(this.blog.createdAt);
+      // Opsi untuk memformat tanggal menjadi lebih mudah dibaca
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      // Kembalikan tanggal yang sudah diformat
+      return date.toLocaleDateString('id-ID', options); // 'id-ID' untuk format Indonesia
+    }
+  }
+}
+</script>
