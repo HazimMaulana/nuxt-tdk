@@ -95,3 +95,14 @@
     </NuxtLink>
   </div>
 </template>
+
+<script>
+import { navigateTo, useCookie } from "nuxt/app";
+import api from "../server/api";
+
+export default{
+  methods: {
+        
+  }
+}
+</script>
