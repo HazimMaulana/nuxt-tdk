@@ -256,7 +256,19 @@
 <script>
 import { Chart } from "chart.js";
 
+export default{
+  data() {
+
+  },
+
+  methods: {
+    
+  }
+}
+
 definePageMeta({
   layout: "admin",
 });
+
+
 </script>

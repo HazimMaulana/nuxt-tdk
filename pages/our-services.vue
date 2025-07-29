@@ -28,9 +28,21 @@
       <h1 class="text-3xl lg:text-5xl font-bold text-[#EB5523]">Lorem Ipsum</h1>
     </div>
     <div class="grid xl:grid-cols-3 grid-cols-1 gap-4 lg:gap-16 md:grid-cols-1 w-full pt-8">
-      <services-card />
-      <services-card />
-      <services-card />
+      <services-card title="Perencanaan Proyek" :list="list_1"/>
+      <services-card title="Supervisi Proyek" :list="list_1"/>
+      <services-card title="Manajemen Konstruksi" :list="list_1"/>
     </div>
   </div>
 </template>
+
+<script>
+  export default{
+    data() {
+      return {
+        list_1: ["Perencanaan konstruksi gedung", "Desain jalan dan jembatan","Proyek irigasi dan sumber daya air"],
+        list_2: ["Jaminan kualitas di lokasi", "Kepatuhan terhadap protokol keselamatan","Penyelesaian proyek tepat waktu"],
+        list_3: ["Manajemen biaya dan anggaran", "Penjadwalan dan koordinasi","Manajemen risiko dan mitigasi"]
+      }
+    }
+  }
+</script>
