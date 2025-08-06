@@ -219,7 +219,7 @@
 </template>
 
 <script>
-// import { Chart } from "chart.js";
+import { Chart } from "chart.js";
 
 export default {
   data() {
@@ -250,11 +250,6 @@ export default {
       }
     },
 
-    /**
-     * Mengubah MongoDB ObjectId menjadi tanggal yang bisa dibaca.
-     * @param {string} objectId - ID dari dokumen MongoDB.
-     * @returns {string} - Tanggal dalam format DD/MM/YYYY.
-     */
     formatMongoDate(objectId) {
       if (!objectId || objectId.length < 8) return "Invalid Date";
       const timestamp = parseInt(objectId.substring(0, 8), 16) * 1000;
