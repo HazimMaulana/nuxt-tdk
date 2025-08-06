@@ -11,11 +11,12 @@
       <div class="flex flex-col w-full md:w-1/2 py-4 space-y-1 px-4 md:space-y-4">
         <h1 class="text-3xl font-bold text-[#EB5523]">Contact Us</h1>
         <p class="text-black text-base sm:text-lg md:text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis eos necessitatibus, totam earum quasi a.</p>
-        <form class="space-y-2 w-full">
+        <form @submit.prevent="submitMessage" class="space-y-2 w-full">
           <div>
             <label for="name" class="block text-sm font-medium text-gray-900">Name</label>
             <div class="mt-2">
               <input
+                v-model="message.name"
                 type="text"
                 name="name"
                 id="name"
@@ -27,6 +28,7 @@
             <label for="email" class="block text-sm font-medium text-gray-900">Email</label>
             <div class="mt-2">
               <input
+                v-model="message.email"
                 type="email"
                 name="email"
                 id="email"
@@ -38,6 +40,7 @@
             <label for="message" class="block text-sm font-medium text-gray-900">Message</label>
             <div class="mt-2">
               <textarea
+                v-model="message.message"
                 name="message"
                 id="message"
                 rows="5"
@@ -45,8 +48,8 @@
               ></textarea>
             </div>
           </div>
-          <a
-            href="#"
+          <button
+            type="submit"
             class="inline-flex flex-row items-center justify-center border-black border w-fit rounded-full px-5 py-2 sm:px-6 sm:py-2.5 space-x-2 text-sm sm:text-base hover:bg-gray-800 hover:text-white hover:border-gray-800 transition-colors"
           >
             <svg width="14" height="14" viewBox="0 0 19 19" fill="black" xmlns="http://www.w3.org/2000/svg">
@@ -55,10 +58,41 @@
               />
             </svg>
             <p class="font-semibold text-black">Send</p>
-          </a>
+          </button>
         </form>
       </div>
       <img src="/img/placeholder.png" alt="" class="h-1/2 w-full md:h-full md:w-1/2" />
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      message: {
+        name: "",
+        email: "",
+        message: "",
+      },
+    };
+  },
+
+  methods: {
+    async submitMessage() {
+      try {
+        const response = await this.$api.post("/contact-form/", {
+          name: this.message.name,
+          email: this.message.email,
+          message: this.message.message,
+        });
+
+        console.log("Pesan berhasil dikirim", response.data);
+        this.tampilanAktif = "daftar";
+      } catch (error) {
+        console.error("Gagal mengirim pesan:", error);
+      }
+    },
+  },
+};
+</script>

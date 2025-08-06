@@ -15,14 +15,16 @@
               <th>Message</th>
             </tr>
           </thead>
-          <tbody>
-            <tr v-if="!messages" class="text-center">
+          <tbody v-if="!messages">
+            <tr class="text-center">
               <td colspan="3">Loading data...</td>
             </tr>
-            <tr class="border-b border-gray-200" v-for="(message, index) in messages" :key="index" v-else>
-              <td class="text-center">{{ message.profile }}</td>
+          </tbody>
+          <tbody v-else>
+            <tr class="border-b border-gray-200" v-for="(message, index) in messages" :key="index">
+              <td class="text-center">{{ message.name }}</td>
               <td class="text-center">{{ message.email }}</td>
-              <td>{{ message.text }}</td>
+              <td class="text-center">{{ message.message }}</td>
             </tr>
           </tbody>
         </table>
@@ -38,34 +40,23 @@ export default {
       messages: null,
     };
   },
-  mounted() {
-    this.messages = [
-      {
-        profile: "Budi Santoso",
-        email: "budi.s@example.com",
-        text: "Halo, saya ingin bertanya mengenai ketersediaan produk XYZ. Apakah masih ada stok?",
-      },
-      {
-        profile: "Jane Smith",
-        email: "jane.smith@email.com",
-        text: "Thank you for the recent update. Everything looks great from my end. Let's proceed.",
-      },
-      {
-        profile: "Siti Aminah",
-        email: "siti.aminah@mail.net",
-        text: "Permisi, mau konfirmasi jadwal meeting kita untuk besok. Apakah jadi jam 10 pagi?",
-      },
-      {
-        profile: "Alex Williams",
-        email: "alex.w@web.dev",
-        text: "Just a quick follow-up on our last conversation. Any news on the project timeline?",
-      },
-      {
-        profile: "Dewi Lestari",
-        email: "dewi.lestari@example.co.id",
-        text: "Terima kasih atas bantuannya. Sangat membantu sekali!",
-      },
-    ];
+
+  created() {
+    this.fetchMessages();
+  },
+
+  methods: {
+    async fetchMessages() {
+      try {
+        // API URL dasar
+        let apiUrl = "/contact-form/";
+        const response = await this.$api.get(apiUrl);
+        console.log("Data message berhasil diambil:", response.data);
+        this.messages = response.data;
+      } catch (error) {
+        console.error("Gagal mengambil data message:", error);
+      }
+    },
   },
 };
 

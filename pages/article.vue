@@ -40,14 +40,8 @@
       <h1 class="text-3xl font bold text-[#EB5523]">Lorem Ipsum</h1>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-2 md:gap-14 md:mt-8">
-      <article-card />
-      <article-card />
-      <article-card />
-      <article-card />
-      <article-card />
-      <article-card />
-      <article-card />
-      <article-card />
+      <article-card v-for="article in articleList" :key="article.slug" :title="article.title" :content="article.content" :imageUrl="`http://localhost:5000${article.coverImage}`" :author="article.author"/>
+
     </div>
     <div class="join mt-4">
       <button class="join-item btn bg-white text-black">1</button>
@@ -58,3 +52,38 @@
     </div>
   </div>
 </template>
+
+<script>
+export default{
+  data() {
+    return{
+      articleList: []
+    }
+  },
+
+  mounted() {
+    this.fetchArticles();
+  },
+
+  methods: {
+    async fetchArticles() {
+      console.log("Mencoba mengambil data article dari API...");
+      try {
+        const response = await this.$api.get("/blogs?limit=2&page=1");
+        console.log("Data article berhasil diambil:", response.data);
+        this.articleList = response.data.data;
+      } catch (error) {
+        console.error("Gagal mengambil data article:", error);
+      }
+    },
+
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        this.article.coverImage = file;
+      }
+    },
+  }
+  
+}
+</script>

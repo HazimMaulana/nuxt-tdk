@@ -43,12 +43,13 @@
     </div>
     <div class="flex flex-col lg:flex-row w-full mt-5 justify-center items-center">
       <div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-24 md:grid-cols-2 md:gap-x-6 w-full gap-y-4">
-        <homepage-card class="h-5/6" />
-        <homepage-card class="h-5/6" />
-        <homepage-card class="h-5/6" />
-        <homepage-card class="h-5/6" />
-        <homepage-card class="h-5/6" />
-        <homepage-card class="h-5/6" />
+        <homepage-card class="h-5/6" 
+        v-for="portfolio in portfoliosList"
+        :title="portfolio.title"
+        :shortDescription="portfolio.shortDescription"
+        :imageUrl="`http://localhost:5000${portfolio.coverImage}`"
+        />
+        
       </div>
     </div>
     <div class="join">
@@ -60,3 +61,38 @@
     </div>
   </div>
 </template>
+
+<script>
+export default{
+  data() {
+    return{
+      portfoliosList: []
+    }
+  },
+
+  mounted() {
+    this.fetchPortfolios();
+  },
+
+  methods: {
+    async fetchPortfolios() {
+      console.log("Mencoba mengambil data portofolio dari API...");
+      try {
+        const response = await this.$api.get("/portfolios?limit5&page=1&status=all");
+        console.log("Data portofolio berhasil diambil:", response.data);
+        this.portfoliosList = response.data.data;
+      } catch (error) {
+        console.error("Gagal mengambil data portfolio:", error);
+      }
+    },
+
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        this.portfolio.coverImage = file;
+      }
+    },
+  }
+  
+}
+</script>

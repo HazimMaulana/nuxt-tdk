@@ -1,11 +1,7 @@
 <template>
-  <!-- Menggunakan class 'min-h-screen' untuk memastikan background mengisi seluruh tinggi layar -->
   <div class="bg-gray-200 min-h-screen font-sans">
     <div class="flex min-h-screen w-full justify-center items-center p-4">
-      <!-- Card container -->
       <div class="flex flex-col lg:flex-row-reverse lg:w-3/5 w-full max-w-4xl h-auto lg:h-[60vh] shadow-2xl rounded-3xl overflow-hidden">
-        <!-- Kolom Gambar -->
-        <!-- Pastikan gambar Anda ada di folder `public/img/login-placeholder.png` -->
         <div class="relative h-48 lg:h-full lg:w-2/5">
           <img
             src="/img/login-placeholder.png"
@@ -15,8 +11,6 @@
           />
         </div>
 
-        <!-- Kolom Form -->
-        <!-- Mengubah @submit.prevent untuk memanggil metode 'login' -->
         <form
           @submit.prevent="login"
           class="lg:w-3/5 w-full bg-[#1E1E1E] text-white rounded-b-3xl lg:rounded-b-none lg:rounded-l-3xl flex flex-col p-8 sm:p-10 lg:p-12 justify-center gap-6"
@@ -29,7 +23,6 @@
 
           <!-- Input Fields -->
           <div class="flex flex-col gap-y-4">
-            <!-- Mengubah input dari email menjadi name -->
             <div>
               <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Name</label>
               <input
@@ -56,7 +49,6 @@
             </div>
           </div>
 
-          <!-- Tombol Login dengan type="submit" untuk mentrigger form submission -->
           <button
             type="submit"
             class="flex border border-white w-fit px-6 py-2 rounded-full justify-center items-center gap-x-3 mt-2 hover:bg-white hover:text-black font-semibold transition-all duration-200 ease-in-out"
@@ -75,9 +67,7 @@
 </template>
 
 <script>
-// Impor yang diperlukan, termasuk useCookie untuk menyimpan token
 import { navigateTo, useCookie } from "nuxt/app";
-import api from "../server/api";
 
 export default {
   data() {
@@ -92,7 +82,7 @@ export default {
       const password = this.password;
 
       try {
-        const response = await api.post(
+        const response = await this.$api.post(
           "user/login",
           { name, password },
           {
@@ -104,13 +94,12 @@ export default {
         );
         console.log("BERHASIL!!!", response.data);
 
-        const token = response.data.token; 
+        const token = response.data.token;
         if (token) {
-          const authToken = useCookie("auth_token"); 
+          const authToken = useCookie("auth_token");
           authToken.value = token;
         }
         await navigateTo("/admin");
-
       } catch (error) {
         console.log("GAGAL!!!", error);
       }

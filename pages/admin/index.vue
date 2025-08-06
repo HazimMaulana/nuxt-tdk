@@ -30,7 +30,7 @@
           />
         </svg>
         <p class="text-gray-400">Total Visitor</p>
-        <h1 class="font-semibold text-2xl">200</h1>
+        <h1 class="font-semibold text-2xl">{{ summary?.uniqueViews ?? 0 }}</h1>
         <div class="flex flex-row items-center space-x-2">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -46,8 +46,7 @@
               fill="#1A932E"
             />
           </svg>
-
-          <p class="text-xs">5% increase from last month</p>
+          <p class="text-xs"></p>
         </div>
       </div>
       <div class="flex flex-col p-8 border border-black rounded-2xl space-y-2">
@@ -70,7 +69,7 @@
           />
         </svg>
         <p class="text-gray-400">Total Views Article</p>
-        <h1 class="font-semibold text-2xl">200</h1>
+        <h1 class="font-semibold text-2xl">{{ summary?.blogViews ?? 0 }}</h1>
         <div class="flex flex-row items-center space-x-2">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -86,8 +85,7 @@
               fill="#1A932E"
             />
           </svg>
-
-          <p class="text-xs">5% increase from last month</p>
+          <p class="text-xs"></p>
         </div>
       </div>
       <div class="flex flex-col p-8 border border-black rounded-2xl space-y-2">
@@ -98,9 +96,8 @@
             fill="white"
           />
         </svg>
-
         <p class="text-gray-400">Total Liked Article</p>
-        <h1 class="font-semibold text-2xl">200</h1>
+        <h1 class="font-semibold text-2xl">N/A</h1>
         <div class="flex flex-row items-center space-x-2">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -116,8 +113,7 @@
               fill="#1A932E"
             />
           </svg>
-
-          <p class="text-xs">5% increase from last month</p>
+          <p class="text-xs"></p>
         </div>
       </div>
       <div class="flex flex-col p-8 border border-black rounded-2xl space-y-2">
@@ -140,7 +136,7 @@
           />
         </svg>
         <p class="text-gray-400">Total Viewed Portofolio</p>
-        <h1 class="font-semibold text-2xl">200</h1>
+        <h1 class="font-semibold text-2xl">{{ summary?.portfolioViews ?? 0 }}</h1>
         <div class="flex flex-row items-center space-x-2">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -156,8 +152,7 @@
               fill="#1A932E"
             />
           </svg>
-
-          <p class="text-xs">5% increase from last month</p>
+          <p class="text-xs"></p>
         </div>
       </div>
     </div>
@@ -175,29 +170,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Lorem Ipsum</td>
-              <td>12/12/1212</td>
-              <td>60</td>
-              <td>15</td>
+            <tr v-for="portfolio in topContent?.portfolios" :key="portfolio._id">
+              <td>{{ portfolio.title }}</td>
+              <td>{{ formatMongoDate(portfolio._id) }}</td>
+              <td>{{ portfolio.views.total }}</td>
+              <td>N/A</td>
             </tr>
-            <tr>
-              <td>Lorem Ipsum</td>
-              <td>12/12/1212</td>
-              <td>60</td>
-              <td>15</td>
-            </tr>
-            <tr>
-              <td>Lorem Ipsum</td>
-              <td>12/12/1212</td>
-              <td>60</td>
-              <td>15</td>
-            </tr>
-            <tr>
-              <td>Lorem Ipsum</td>
-              <td>12/12/1212</td>
-              <td>60</td>
-              <td>15</td>
+            <tr v-if="!topContent?.portfolios?.length">
+              <td colspan="4" class="text-center py-4">No data available</td>
             </tr>
           </tbody>
         </table>
@@ -219,29 +199,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Lorem Ipsum</td>
-              <td>12/12/1212</td>
-              <td>60</td>
-              <td>15</td>
+            <tr v-for="blog in topContent?.blogs" :key="blog._id">
+              <td>{{ blog.title }}</td>
+              <td>{{ formatMongoDate(blog._id) }}</td>
+              <td>{{ blog.views.total }}</td>
+              <td>N/A</td>
             </tr>
-            <tr>
-              <td>Lorem Ipsum</td>
-              <td>12/12/1212</td>
-              <td>60</td>
-              <td>15</td>
-            </tr>
-            <tr>
-              <td>Lorem Ipsum</td>
-              <td>12/12/1212</td>
-              <td>60</td>
-              <td>15</td>
-            </tr>
-            <tr>
-              <td>Lorem Ipsum</td>
-              <td>12/12/1212</td>
-              <td>60</td>
-              <td>15</td>
+            <tr v-if="!topContent?.blogs?.length">
+              <td colspan="4" class="text-center py-4">No data available</td>
             </tr>
           </tbody>
         </table>
@@ -254,21 +219,55 @@
 </template>
 
 <script>
-import { Chart } from "chart.js";
+// import { Chart } from "chart.js";
 
-export default{
+export default {
   data() {
+    return {
+      summary: null,
+      topContent: null,
+      dailyData: [],
+    };
+  },
 
+  created() {
+    this.fetchStatisticData();
   },
 
   methods: {
-    
-  }
-}
+    async fetchStatisticData() {
+      try {
+        const apiUrl = "/statistic/";
+        const response = await this.$api.get(apiUrl);
+        console.log("Data statistic berhasil diambil:", response.data);
+
+        const apiData = response.data.data;
+        this.summary = apiData.summary;
+        this.topContent = apiData.topContent;
+        this.dailyData = apiData.dailyData;
+      } catch (error) {
+        console.error("Gagal mengambil data statistic:", error);
+      }
+    },
+
+    /**
+     * Mengubah MongoDB ObjectId menjadi tanggal yang bisa dibaca.
+     * @param {string} objectId - ID dari dokumen MongoDB.
+     * @returns {string} - Tanggal dalam format DD/MM/YYYY.
+     */
+    formatMongoDate(objectId) {
+      if (!objectId || objectId.length < 8) return "Invalid Date";
+      const timestamp = parseInt(objectId.substring(0, 8), 16) * 1000;
+      const date = new Date(timestamp);
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    },
+  },
+};
 
 definePageMeta({
   layout: "admin",
 });
-
-
 </script>

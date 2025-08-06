@@ -64,16 +64,16 @@
       </div>
 
       <div class="grid grid-cols-4 gap-16 w-full pt-6">
-        <carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin /><carousel-admin />
+        <carousel-admin v-for="article in articleList" :key="article.slug" :title="article.title" :content="article.content" :imageUrl="`http://localhost:5000${article.coverImage}`" :author="article.author"/>
       </div>
     </div>
 
     <div v-else-if="tampilanAktif === 'buat'" class="px-6">
       <div class="bg-gray-50 p-8 rounded-lg border">
-        <form class="space-y-4">
+        <form @submit.prevent="submitArticles" class="space-y-4">
           <div>
             <label for="title" class="block text-2xl font-bold text-[#EB5523]">Portfolio Title</label>
-            <input type="text" id="title" class="mt-1 block w-full shadow-sm p-2 text-black border border-gray-700 rounded-2xl" />
+            <input v-model="article.title" type="text" id="title" class="mt-1 block w-full shadow-sm p-2 text-black border border-gray-700 rounded-2xl" />
           </div>
           <div>
             <label for="cover-image-upload" class="block text-2xl font-bold text-[#EB5523] mb-2">Cover Image</label>
@@ -82,18 +82,18 @@
               class="relative flex flex-col items-center justify-center w-full h-32 border-2 border-gray-400 border-dashed rounded-2xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors"
             >
               <div class="flex items-center justify-center bg-[#EB5523] text-white p-2 rounded-box">
-                <svg class="w-10 h-10" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <span v-if="article.coverImage">{{ article.coverImage.name }}</span>
+                <svg v-else class="w-10 h-10" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 5.75V14.25M5.75 10H14.25" />
                 </svg>
               </div>
-
-              <input id="cover-image-upload" type="file" class="hidden" />
+              <input @change="handleFileUpload" id="cover-image-upload" type="file" class="hidden" accept="image/*" />
             </label>
           </div>
           <div>
             <label for="content" class="block text-2xl font-bold text-[#EB5523]">Content</label>
             <Editor
-              v-model="editorValue"
+              v-model="article.content"
               editorStyle="height: 320px"
               :pt="{
                 toolbar: { style: { backgroundColor: 'white', borderColor: '#D1D5DB' } },
@@ -102,8 +102,8 @@
             />
           </div>
           <div class="flex justify-end pt-4 space-x-3">
-            <button @click="tampilanAktif = 'daftar'" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">Cancel</button>
-            <button type="" class="flex flex-row items-center space-x-2 px-4 py-2 bg-[#2949BE] text-white rounded-lg">
+             <button @click="tampilanAktif = 'daftar'" type="button" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">Cancel</button>
+            <button type="button" class="flex flex-row items-center space-x-2 px-4 py-2 bg-[#2949BE] text-white rounded-lg">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M19 20H5C4.46957 20 3.96086 19.7893 3.58579 19.4142C3.21071 19.0391 3 18.5304 3 18V6C3 5.46957 3.21071 4.96086 3.58579 4.58579C3.96086 4.21071 4.46957 4 5 4H15C15.5304 4 16.0391 4.21071 16.4142 4.58579C16.7893 4.96086 17 5.46957 17 6V7M19 20C18.4696 20 17.9609 19.7893 17.5858 19.4142C17.2107 19.0391 17 18.5304 17 18V7M19 20C19.5304 20 20.0391 19.7893 20.4142 19.4142C20.7893 19.0391 21 18.5304 21 18V9C21 8.46957 20.7893 7.96086 20.4142 7.58579C20.0391 7.21071 19.5304 7 19 7H17M13 4H9M7 16H13M7 8H13V12H7V8Z"
@@ -115,7 +115,7 @@
               </svg>
               <p>Preview</p>
             </button>
-            <button type="submit" class="flex flex-row items-center space-x-2 px-4 py-2 bg-[#EB5523] text-white rounded-lg hover:bg-orange-600">
+            <button type="submit" class="flex flex-row items-center space-x-2 px-4 py-2 bg-[#EB5523] text-white rounded-lg hover:bg-orange-600 cursor-pointer">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fill-rule="evenodd"
@@ -134,14 +134,12 @@
         </form>
       </div>
       <div class="flex justify-between items-center mb-6">
-        <!-- <h2 class="text-2xl font-bold text-[#EB5523]">Create New Portofolio</h2> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { AutoComplete } from "primevue";
 import CarouselAdmin from "../../components/carousel-admin.vue";
 
 definePageMeta({
@@ -152,23 +150,78 @@ export default {
   components: {
     CarouselAdmin,
   },
-
-  // Mengelola state reaktif komponen (pengganti ref)
   data() {
     return {
       tampilanAktif: "daftar",
-      editorValue: "",
+      articleList: [],
+      article: {
+        title: "",
+        content: "",
+        coverImage: null,
+      },
       value: "",
-      items: [],
+      searchTimeout: null,
     };
   },
-
-  methods: {
-    search(event) {
-      this.items = [...Array(10).keys()].map((item) => event.query + "-" + item);
+  created() {
+    this.fetchArticles();
+  },
+  watch: {
+    value(newSearchTerm) {
+      clearTimeout(this.searchTimeout);
+      this.searchTimeout = setTimeout(() => {
+        this.fetchArticles(newSearchTerm);
+      }, 500);
     },
   },
+  methods: {
+    async fetchArticles(searchTerm = "") {
+      console.log(`FETCH_ARTICLES: Mencari dengan term: "${searchTerm}"`);
+      try {
+        let apiUrl = "/blogs?limit=10&page=1";
+        
+        // [FIX] Menggunakan '&' untuk parameter tambahan, bukan '?'
+        if (searchTerm) {
+          apiUrl += `&search=${encodeURIComponent(searchTerm)}`;
+        }
 
+        const response = await this.$api.get(apiUrl);
+        console.log("FETCH_ARTICLES: Response dari API:", response.data);
+
+        this.articleList = response.data.data;
+        console.log("FETCH_ARTICLES: Isi `this.articleList` setelah di-set:", this.articleList);
+      } catch (error) {
+        console.error("FETCH_ARTICLES: Gagal mengambil data article:", error);
+      }
+    },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        this.article.coverImage = file;
+      }
+    },
+    async submitArticles() {
+      const formData = new FormData();
+      formData.append("title", this.article.title);
+      formData.append("content", this.article.content);
+      if (this.article.coverImage) {
+        formData.append("coverImage", this.article.coverImage);
+      }
+
+      try {
+        const response = await this.$api.post("/blogs/", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        console.log("Article berhasil dibuat:", response.data);
+        this.tampilanAktif = "daftar";
+        await this.fetchArticles();
+      } catch (error) {
+        console.error("Gagal membuat article:", error);
+      }
+    },
+  },
   computed: {
     judulHalaman() {
       if (this.tampilanAktif === "buat") {
@@ -183,9 +236,9 @@ export default {
 <style module>
 .myinput {
   border-radius: 2rem;
-  /* padding: 1rem 1rem; */
   border-width: 1px;
   border-color: black;
   width: 300px;
 }
 </style>
+```

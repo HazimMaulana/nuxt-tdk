@@ -1,10 +1,10 @@
 <template>
   <div class="card bg-base-100 w-full shadow-lg rounded-2xl overflow-hidden">
     <div class="card-body bg-white rounded-t-2xl p-4 sm:p-6">
-      <h2 class="card-title text-black text-xl sm:text-2xl">Card Title</h2>
-      <p class="text-black text-sm sm:text-base mt-1">A card component has a figure, a body part, and inside body there are title and actions parts.</p>
+      <h2 id="title" class="card-title text-black text-xl sm:text-2xl">{{ title }}</h2>
+      <p id="shortDescription" class="text-black text-sm sm:text-base mt-1">{{ shortDescription }}</p>
       <div class="card-actions justify-start mt-4 flex flex-row space-x-1">
-        <button class="bg-blue-700 p-1 rounded-lg">
+        <button class="bg-blue-700 p-1 rounded-lg cursor-pointer hover:opacity-50">
           <svg width="20" height="20" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               fill-rule="evenodd"
@@ -18,7 +18,7 @@
             />
           </svg>
         </button>
-        <button class="bg-[#F43232] p-1 rounded-lg">
+        <button class="bg-[#F43232] p-1 rounded-lg cursor-pointer hover:opacity-50">
           <svg width="20" height="20" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M7.29974 3.72976L6.99495 6.77687C6.94887 7.23876 6.92601 7.46953 6.82079 7.64405C6.7285 7.79768 6.59278 7.92053 6.43074 7.99709C6.24678 8.08381 6.01529 8.08381 5.55086 8.08381H4.69456C4.23049 8.08381 3.99864 8.08381 3.81468 7.99673C3.65251 7.92023 3.51665 7.79737 3.42427 7.64369C3.31977 7.46953 3.29655 7.23876 3.25011 6.77687L2.94568 3.72976M5.66697 6.08821V4.27402M4.57845 6.08821V4.27402M2.40143 2.82267H4.07592M4.07592 2.82267L4.21598 1.85316C4.25662 1.67682 4.4032 1.55273 4.57156 1.55273H5.67386C5.84222 1.55273 5.98844 1.67682 6.02944 1.85316L6.1695 2.82267M4.07592 2.82267H6.1695M6.1695 2.82267H7.84399"
@@ -29,7 +29,7 @@
             />
           </svg>
         </button>
-        <button class="bg-[#797979] p-1 rounded-lg">
+        <button class="bg-[#797979] p-1 rounded-lg cursor-pointer hover:opacity-50">
           <svg width="20" height="19" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_383_536)">
               <path
@@ -51,7 +51,28 @@
       </div>
     </div>
     <figure>
-      <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" class="w-full h-auto object-cover" />
+      <img id="image" :src="imageUrl" alt="Product Image" class="w-full h-auto object-cover" />
     </figure>
   </div>
 </template>
+
+<script setup>
+// Definisikan props yang akan diterima oleh komponen ini
+defineProps({
+  title: {
+    type: String,
+    required: true, // Opsional: pastikan prop ini selalu diisi
+    default: 'title Default'
+  },
+  shortDescription: {
+    type: String,
+    required: true,
+    default: 'shortDescription Default'
+  },
+  imageUrl: {
+    type: String,
+    required: true,
+    default: 'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp'
+  }
+});
+</script>

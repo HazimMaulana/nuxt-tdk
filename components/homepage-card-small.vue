@@ -6,7 +6,7 @@
     <div class="card-body p-4 sm:p-6">
       <h2 class="card-title text-lg sm:text-xl md:text-2xl">{{ title }}</h2>
       <p class="text-xs sm:text-sm mt-1 sm:mt-2">
-        {{ description }}
+        {{ shortDescription }}
       </p>
       <div class="card-actions justify-end mt-4 sm:mt-6">
         <NuxtLink :to="navigateTO">
@@ -26,7 +26,7 @@ export default {
       type: String,
       default: 'Card Title'
     },
-    description: {
+    shortDescription: {
       type: String,
       default: 'A card component has a figure, a body part, and inside body there are title and actions parts.'
     },
@@ -40,5 +40,4 @@ export default {
     }
   }
 }
-
 </script>

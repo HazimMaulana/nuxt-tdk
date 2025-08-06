@@ -2,6 +2,12 @@ import tailwindcss from "@tailwindcss/vite";
 import Aura from "@primevue/themes/aura"; 
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
+  runtimeConfig: {
+    public: {
+      apiBaseUrl: process.env.API_BASE_URL || "kon", // Pastikan ini ada
+      node_env: process.env.NODE_ENV || "development", // Tambahkan ini untuk mengakses NODE_ENV
+    },
+  },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   vite: {

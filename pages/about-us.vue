@@ -42,7 +42,7 @@
     <div class="flex flex-row w-180 h-fit pt-6">
       <img src="/img/Alireza.jpg" alt="Alireza" class="w-64 h-auto object-cover shadow-lg shadow-gray-400 rounded-lg" />
       <div class="flex flex-col bg-white h-auto w-full my-4 shadow-lg shadow-gray-400 py-6 px-8 justify-center space-y-4 rounded-r-lg">
-        <h1 class="text-black font-bold text-2xl">Firma</h1>
+        <h1 class="text-black font-bold text-2xl">Firman</h1>
         <h2 class="text-black font-semibold text-lg">Direktur Utama</h2>
         <p class="text-black text-justify pt-2">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, sapiente ea ab minima quae alias odio velit labore, mollitia cupiditate delectus, molestias nobis
