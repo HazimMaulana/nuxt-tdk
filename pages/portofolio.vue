@@ -48,6 +48,7 @@
         :title="portfolio.title"
         :shortDescription="portfolio.shortDescription"
         :imageUrl="`http://localhost:5000${portfolio.coverImage}`"
+        :slug="portfolio.slug"
         />
         
       </div>

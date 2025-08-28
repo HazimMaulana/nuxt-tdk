@@ -1,10 +1,11 @@
 <template>
-  <div class="card bg-base-100 w-full shadow-lg rounded-2xl overflow-hidden">
-    <div class="card-body bg-white rounded-t-2xl p-4 sm:p-6">
+  <div class="card bg-base-100 w-full shadow-lg rounded-2xl overflow-hidden aspect-[3/4]">
+    <div class="card-body bg-white rounded-t-2xl p-4 sm:p-6 h-[60%]">
       <h2 id="title" class="card-title text-black text-xl sm:text-2xl">{{ title }}</h2>
       <p id="shortDescription" class="text-black text-sm sm:text-base mt-1">{{ shortDescription }}</p>
       <div class="card-actions justify-start mt-4 flex flex-row space-x-1">
-        <button class="bg-blue-700 p-1 rounded-lg cursor-pointer hover:opacity-50">
+        <!-- edit -->
+        <button @click="edit" class="bg-blue-700 p-1 rounded-lg cursor-pointer hover:opacity-50">
           <svg width="20" height="20" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               fill-rule="evenodd"
@@ -18,7 +19,7 @@
             />
           </svg>
         </button>
-        <button class="bg-[#F43232] p-1 rounded-lg cursor-pointer hover:opacity-50">
+        <button @click="callDeleteFunc" class="bg-[#F43232] p-1 rounded-lg cursor-pointer hover:opacity-50">
           <svg width="20" height="20" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M7.29974 3.72976L6.99495 6.77687C6.94887 7.23876 6.92601 7.46953 6.82079 7.64405C6.7285 7.79768 6.59278 7.92053 6.43074 7.99709C6.24678 8.08381 6.01529 8.08381 5.55086 8.08381H4.69456C4.23049 8.08381 3.99864 8.08381 3.81468 7.99673C3.65251 7.92023 3.51665 7.79737 3.42427 7.64369C3.31977 7.46953 3.29655 7.23876 3.25011 6.77687L2.94568 3.72976M5.66697 6.08821V4.27402M4.57845 6.08821V4.27402M2.40143 2.82267H4.07592M4.07592 2.82267L4.21598 1.85316C4.25662 1.67682 4.4032 1.55273 4.57156 1.55273H5.67386C5.84222 1.55273 5.98844 1.67682 6.02944 1.85316L6.1695 2.82267M4.07592 2.82267H6.1695M6.1695 2.82267H7.84399"
@@ -48,31 +49,80 @@
             </defs>
           </svg>
         </button>
+        <button   @click="highlightThis" class="bg-[#FFCC00] p-1 rounded-lg cursor-pointer hover:opacity-50 items-center aspect-square">
+          <svg width="19" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M8.99984 14.275L4.84984 16.775C4.66651 16.8917 4.47484 16.9417 4.27484 16.925C4.07484 16.9083 3.89984 16.8417 3.74984 16.725C3.59984 16.6083 3.48317 16.4627 3.39984 16.288C3.31651 16.1133 3.29984 15.9173 3.34984 15.7L4.44984 10.975L0.774841 7.8C0.608174 7.65 0.504174 7.479 0.462841 7.287C0.421507 7.095 0.433841 6.90767 0.499841 6.725C0.565841 6.54233 0.665841 6.39233 0.799841 6.275C0.933841 6.15767 1.11717 6.08267 1.34984 6.05L6.19984 5.625L8.07484 1.175C8.15817 0.975 8.28751 0.825 8.46284 0.725C8.63817 0.625 8.81717 0.575 8.99984 0.575C9.18251 0.575 9.36151 0.625 9.53684 0.725C9.71217 0.825 9.84151 0.975 9.92484 1.175L11.7998 5.625L16.6498 6.05C16.8832 6.08333 17.0665 6.15833 17.1998 6.275C17.3332 6.39167 17.4332 6.54167 17.4998 6.725C17.5665 6.90833 17.5792 7.096 17.5378 7.288C17.4965 7.48 17.3922 7.65067 17.2248 7.8L13.5498 10.975L14.6498 15.7C14.6998 15.9167 14.6832 16.1127 14.5998 16.288C14.5165 16.4633 14.3998 16.609 14.2498 16.725C14.0998 16.841 13.9248 16.9077 13.7248 16.925C13.5248 16.9423 13.3332 16.8923 13.1498 16.775L8.99984 14.275Z"
+              fill="white"
+            />
+          </svg>
+        </button>
       </div>
     </div>
-    <figure>
-      <img id="image" :src="imageUrl" alt="Product Image" class="w-full h-auto object-cover" />
+    <figure class="h-[40%]">
+      <img crossorigin="anonymous" id="image" :src="imageUrl" alt="Product Image" class="w-full h-auto object-cover" />
     </figure>
   </div>
 </template>
 
-<script setup>
-// Definisikan props yang akan diterima oleh komponen ini
-defineProps({
-  title: {
-    type: String,
-    required: true, // Opsional: pastikan prop ini selalu diisi
-    default: 'title Default'
+<script>
+export default {
+  props: {
+    id: { type: String, required: true },
+    slug: { type: String, required: true },
+    title: {
+      type: String,
+      required: true,
+      default: "title Default",
+    },
+    shortDescription: {
+      type: String,
+      required: true,
+      default: "shortDescription Default",
+    },
+    imageUrl: {
+      type: String,
+      required: true,
+      default:
+        "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp",
+    },
   },
-  shortDescription: {
-    type: String,
-    required: true,
-    default: 'shortDescription Default'
+  methods: {
+    highlightThis() {
+      console.log("✅ Debug: props.id =", this.id);
+      if (!this.id) {
+        console.error("❌ Portfolio ID kosong, tidak mengirim ke parent");
+        return;
+      }
+      this.$emit("highlight", this.id);
+    },
+    deleteCard() {
+      console.log("✅ Debug: props.slug =", this.slug);
+      if (!this.slug) {
+        console.error("❌ Portfolio SLUG kosong, tidak mengirim ke parent");
+        return;
+      }
+      this.$emit("delete", this.slug);
+    },
+    deleteHighlightPort() {
+      console.log("✅ Debug: props.id =", this.id);
+      if (!this.slug) {
+        console.error("❌ Portfolio Hightlight ID kosong, tidak mengirim ke parent");
+        return;
+      }
+      this.$emit("deleteHighlight", this.id);
+    },
+    edit(){
+      if (!this.slug) {
+        console.error("❌ Portfolio Hightlight ID kosong, tidak mengirim ke parent");
+        return;
+      }
+      this.$emit("edit", this.slug)
+    },
+    callDeleteFunc(){
+      this.deleteCard();
+      this.deleteHighlightPort();
+    }
   },
-  imageUrl: {
-    type: String,
-    required: true,
-    default: 'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp'
-  }
-});
+};
 </script>

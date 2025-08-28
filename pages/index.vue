@@ -13,7 +13,7 @@
           temporibus molestiae, voluptatum natus! Minus!
         </p>
       </div>
-      <a href=""
+      <NuxtLink to="/about-us"
         class="flex flex-row shadow-xl backdrop-blur-lg border border-white rounded-full px-4 py-2 mt-6 text-sm items-center space-x-2 hover:bg-white hover:text-black group transition-colors">
         <svg width="13" height="14" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -21,7 +21,7 @@
             fill="#EB5523" />
         </svg>
         <p class="font-semibold text-white group-hover:text-black">More Of Our Team</p>
-      </a>
+      </NuxtLink>
     </div>
   </div>
 
@@ -34,7 +34,7 @@
         inovatif yang berkontribusi pada pembangunan infrastruktur dan
         kemajuan masyarakat.
       </p>
-      <a href=""
+      <NuxtLink to="about-us"
         class="flex flex-row items-center border-white border w-fit rounded-full px-4 py-2 space-x-2 mt-4 sm:mt-6 hover:bg-white/20 transition-colors">
         <svg width="14" height="14" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -42,7 +42,7 @@
             fill="#EB5523" />
         </svg>
         <p class="text-white">About Us</p>
-      </a>
+      </NuxtLink>
     </div>
   </div>
 
@@ -53,22 +53,22 @@
           <h1 class="text-black text-xl sm:text-2xl font-semibold">Our Portofolio</h1>
           <p class="w-full font-bold text-[#EB5523] text-3xl sm:text-4xl md:text-5xl mt-1">Lorem Ipsum</p>
         </div>
-        <div class="flex w-full items-end justify-end">
-          <a href="" class="flex flex-row text-black items-center mt-4 sm:mt-0 hover:text-opacity-75">
+        <div class="flex w-full items-end justify-end ">
+          <NuxtLink to="/portofolio" class="flex flex-row text-black items-center mt-4 sm:mt-0 hover:text-opacity-75 hover:text-orange-400">
             <p class="font-semibold mr-1">More</p>
             <svg width="32" height="18" viewBox="0 0 44 25" fill="none" xmlns="http://www.w3.org/2000/svg"
               class="w-6 h-auto sm:w-8 md:w-11">
               <path
                 d="M14.475 12.5L7.125 5.15C6.875 4.9 6.754 4.604 6.762 4.262C6.77 3.92 6.89933 3.62434 7.15 3.375C7.40067 3.12567 7.69667 3.00067 8.038 3C8.37933 2.99934 8.675 3.12434 8.925 3.375L16.6 11.075C16.8 11.275 16.95 11.5 17.05 11.75C17.15 12 17.2 12.25 17.2 12.5C17.2 12.75 17.15 13 17.05 13.25C16.95 13.5 16.8 13.725 16.6 13.925L8.9 21.625C8.65 21.875 8.35833 21.996 8.025 21.988C7.69167 21.98 7.4 21.8507 7.15 21.6C6.9 21.3493 6.775 21.0533 6.775 20.712C6.775 20.3707 6.9 20.075 7.15 19.825L14.475 12.5Z"
-                fill="#010400" />
+                fill="currentColor" />
               <path
                 d="M24.475 12.5L17.125 5.15C16.875 4.9 16.754 4.604 16.762 4.262C16.77 3.92 16.8993 3.62434 17.15 3.375C17.4007 3.12567 17.6967 3.00067 18.038 3C18.3793 2.99934 18.675 3.12434 18.925 3.375L26.6 11.075C26.8 11.275 26.95 11.5 27.05 11.75C27.15 12 27.2 12.25 27.2 12.5C27.2 12.75 27.15 13 27.05 13.25C26.95 13.5 26.8 13.725 26.6 13.925L18.9 21.625C18.65 21.875 18.3583 21.996 18.025 21.988C17.6917 21.98 17.4 21.8507 17.15 21.6C16.9 21.3493 16.775 21.0533 16.775 20.712C16.775 20.3707 16.9 20.075 17.15 19.825L24.475 12.5Z"
-                fill="#010400" />
+                fill="currentColor" />
               <path
                 d="M34.475 12.5L27.125 5.15C26.875 4.9 26.754 4.604 26.762 4.262C26.77 3.92 26.8993 3.62434 27.15 3.375C27.4007 3.12567 27.6967 3.00067 28.038 3C28.3793 2.99934 28.675 3.12434 28.925 3.375L36.6 11.075C36.8 11.275 36.95 11.5 37.05 11.75C37.15 12 37.2 12.25 37.2 12.5C37.2 12.75 37.15 13 37.05 13.25C36.95 13.5 36.8 13.725 36.6 13.925L28.9 21.625C28.65 21.875 28.3583 21.996 28.025 21.988C27.6917 21.98 27.4 21.8507 27.15 21.6C26.9 21.3493 26.775 21.0533 26.775 20.712C26.775 20.3707 26.9 20.075 27.15 19.825L34.475 12.5Z"
-                fill="#010400" />
+                fill="currentColor" />
             </svg>
-          </a>
+          </NuxtLink>
         </div>
       </div>
       <div class="flex flex-col lg:flex-row w-full mt-5 gap-4">

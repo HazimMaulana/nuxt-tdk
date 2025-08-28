@@ -9,7 +9,7 @@
 
     <h1 class="text-black px-6 font-semibold text-xl mt-8">Overview</h1>
 
-    <div class="grid grid-cols-4 gap-6 px-6 text-black mt-4">
+    <div class="grid grid-cols-3 gap-6 px-6 text-black mt-4">
       <div class="flex flex-col p-8 border border-black rounded-2xl space-y-2">
         <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="46" height="46" rx="23" fill="#D398E7" />
@@ -88,7 +88,7 @@
           <p class="text-xs"></p>
         </div>
       </div>
-      <div class="flex flex-col p-8 border border-black rounded-2xl space-y-2">
+      <!-- <div class="flex flex-col p-8 border border-black rounded-2xl space-y-2">
         <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="46" height="46" rx="23" fill="#D398E7" />
           <path
@@ -115,7 +115,7 @@
           </svg>
           <p class="text-xs"></p>
         </div>
-      </div>
+      </div> -->
       <div class="flex flex-col p-8 border border-black rounded-2xl space-y-2">
         <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="46" height="46" rx="23" fill="#D398E7" />

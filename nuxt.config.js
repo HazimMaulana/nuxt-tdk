@@ -13,6 +13,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       tailwindcss(),
+      typography(),
     ],
   },
   modules: ["@primevue/nuxt-module"],
